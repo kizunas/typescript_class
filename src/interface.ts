@@ -3,7 +3,8 @@
 // オリジナルの型を定義するもの
 // interfaceはオブジェクトだけ。typeは他にも定義が可能である。
 interface Greetable {
-  name: string; // 具体的な値やdefault値などを設定することはできない。
+  readonly name: string; // public, privateは使えない。readonlyにより初期化の時に一度だけ実行される。
+  // カスタム型(Type)でもreadonlyは使える。
 
   greet(phrase: string): void;
 }
