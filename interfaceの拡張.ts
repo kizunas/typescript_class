@@ -7,7 +7,8 @@ interface Greetable {
 }
 
 
-class Person implements Greetable, Named {
+class Person implements Greetable, Named { // 二つのインスタンスを実装
+ name: string;
  age = 30;
  constructor(n: string) {
   this.name = n;
