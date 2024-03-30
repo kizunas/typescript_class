@@ -10,7 +10,8 @@ add = (n1: number, n2: number) => {
 }
 
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  outputName?: string; // このNamedインターフェースを実装したクラスがこのプロパティをもっているかどうかはどちらでも良いとなる。
 }
 
 interface Greetable {
@@ -19,19 +20,25 @@ interface Greetable {
 
 
 class Person implements Greetable, Named { // 二つのインスタンスを実装
- name: string;
+ name?: string;
  age = 30;
- constructor(n: string) {
-  this.name = n;
+ constructor(n?: string) {
+  if (n) {
+    this.name = n;
+  } else {
+    console.log("Hi");
+  }
  }
 
- greet(phrase: string) {
-  console.log(phrase + ' ' + this.name); 
+ greet(phrase: string) { 
+  if (this.name) { // オプショナル(?)によりnが存在しないことがあり、this.nameがundefinedになるかもしれないためif文を追加
+    console.log(phrase + ' ' + this.name); 
+  }
  }
 
  
 }
 let user1: Greetable
-user1 = new Person('Max');
+user1 = new Person();
 
 user1.greet('Hello I am');
